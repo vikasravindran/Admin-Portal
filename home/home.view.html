@@ -1,0 +1,133 @@
+<div class="container-fluid marginT">
+  <div class="row">
+    <div class="col-md-2  ">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="logo"> <img src="/images/logoinner.png"  alt=""/> </div>
+        </div>
+        <div class="col-lg-12"> 
+          
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper" style="display:none">
+            <ul class="sidebar-nav nav nav-tabs" id="sidebar-nav">
+              <li class="active"> <a href="#dashboard">Presence Panel</a> </li>
+              <li> <a href="#tab2">Future Category</a> </li>
+              <li> <a href="#tab2">Future Category</a> </li>
+              <li> <a href="#tab2">Future Category</a> </li>
+            </ul>
+          </div>
+          <!-- /#sidebar-wrapper --> 
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-4 tleftSec">
+            <h4>Dashboard </h4>
+            <a href="/">Back to Homepage</a> </div>
+          <div class="col-md-3 pull-right tleftSec">
+            <h5> {{ vm.username }}</h5>
+            <a href="#/login" class="logout"><i class="fa fa-sign-out "></i>Logout</a> </div>
+          <div class="col-md-12 ">
+            <h4 class="title">Presence Panel</h4>
+            <p>Allows you to monitor real-time calling state of other users / extensions  in your organization.</p>
+          </div>
+       
+          </div>
+          <div class="col-md-12" id="control-list"> 
+                 <div class="col-md-12 ">
+            <div class="col-md-9 tbgColor">
+              <p>{{ vm.organization }} - <span>{{ vm.extcount }} extensions </span></p>
+            </div>
+            <div class="col-md-3 tbgColor pull-right search">
+              <input type="search" ng-model="searchText" class="form-control" placeholder="Who are you looking for?">
+              <i class="fa fa-search"></i>
+              </input>
+            </div>
+            <table class="table " cellspacing="0" width="100%">
+<!--              <thead class="tableHead">
+                <tr>
+                  <th width="19%" class="sorting">Status <img src="images/sort_both.png" alt=""/></th>
+                  <th width="25%" class="sorting">Name <img src="images/sort_both.png" alt=""/></th>
+                  <th colspan="2" class="sorting">Ext <img ng-click="order('userList.Ext')" src="images/sort_both.png" alt=""/>
+                    
+      </th>
+                </tr>
+             
+                </thead>
+-->
+               <thead class="tableHead">
+                    <tr>
+                        <td>Status
+                           <a class="caret-down" href="#" ng-click="sortType = 'status'; sortReverse = true"> 
+                              <span  class="fa fa-caret-down"></span>
+                            </a>
+                            <a href="#" ng-click="sortType = 'status'; sortReverse = false  ">
+                              <span  class="fa fa-caret-up"></span>
+                           </a>
+                         </td>
+                         <td>
+                            <a href="#" ng-click="sortType = 'Name'; sortReverse = !sortReverse">
+                               Name 
+                               <span ng-show="sortType == 'Name' && !sortReverse" class="fa fa-caret-down"></span>
+                               <span ng-show="sortType == 'Name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                          </td>
+                          <td>
+                             <a href="#" ng-click="sortType = 'Ext'; sortReverse = !sortReverse">
+                                Ext 
+                                <span ng-show="sortType == 'Ext' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'Ext' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                           </td>
+                           <td>
+                             <a href="#" ng-click="sortType = 'Ext'; sortReverse = !sortReverse">
+                                Label 
+                                <span ng-show="sortType == 'Label' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'Label' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                           </td>
+                      </tr>
+              </thead>              
+              <tbody>
+              <tr>
+              <td colspan="4" align="right"> </td>
+              </tr>
+                  
+                  <tr ng-repeat="userList in vm.lpresense | filter:searchText | orderBy:sortType:sortReverse">
+                      
+                  <td class={{userList.status}}><i class={{userList.status+"Icon"}}></i><span>{{userList.status}}</span></td>
+                      
+                  <td >{{userList.Name}}</td>
+                  <td width="32%">{{userList.Ext}}</td>
+                  <td width="24%">{{userList.Label}}</td>
+                  </tr>
+                  
+
+                  
+          
+              </tbody>
+            </table>
+
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<h1>Hi {{vm.user.firstName}}!</h1>
+<p>You're logged in!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li ng-repeat="user in vm.allUsers">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a href="#" ng-click="vm.deleteUser(user.id)">Delete</a>
+    </li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="#/login" class="btn btn-primary">Logout</a></p>
+-->
